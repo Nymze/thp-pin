@@ -1,9 +1,19 @@
 class Pin < ApplicationRecord
 
-belongs_to :user
-has_many :comments
 
-validates :user_id 	#user_id requis
-validates :url, presence: true #url requise
+#lié à l'utilisateur
+belongs_to :user
+
+
+
+# le commentaire est lié au pin si le pin est detruit le commentaire aussi
+has_many :comments, dependent: :destroy
+
+  validates :user_id
+
+  validates :url, presence: true # URL requise
+
+
+
 
 end
